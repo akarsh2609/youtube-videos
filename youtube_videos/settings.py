@@ -38,7 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'youtube_videos'
+    'youtube_videos',
+    'django_crontab'
+]
+
+CRONJOBS = [
+    ('*/1 * * * * * *', 'youtube_videos.youtube_cron.youtube_cron')
 ]
 
 REST_FRAMEWORK = {
