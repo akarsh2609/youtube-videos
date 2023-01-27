@@ -10,6 +10,7 @@ i = 0
 
 
 def youtube_cron():
+    global i
     youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION,
                     developerKey=DEVELOPER_KEY[i])
     search_response = {}
@@ -25,7 +26,6 @@ def youtube_cron():
             relevanceLanguage='hi'
         ).execute()
     except Exception as err:
-        global i
         if i < len(DEVELOPER_KEY):
             i += 1
         else:

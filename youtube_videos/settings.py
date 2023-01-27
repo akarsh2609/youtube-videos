@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'django-insecure-t8k)23a=vgh^jvk!8)7#)%rjn2m9a-=-b$$9lenu+91*b5xu0=
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -39,12 +37,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'youtube_videos',
-    'django_crontab'
+    'django_crontab',
 ]
 
+CRONTAB_EXECUTABLE = '/usr/bin/crontab'
+
 CRONJOBS = [
-    ('*/1 * * * * * *', 'youtube_videos.youtube_cron.youtube_cron')
+    ('*/10 * * * * * *', 'youtube_videos.youtube_cron.youtube_cron',
+     '>> /Users/akarsh/Desktop/videos/youtube-videos/file.log')
 ]
+
+CRONTAB_COMMAND_SUFFIX = '2>&1'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
@@ -81,7 +84,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'youtube_videos.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -91,7 +93,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -111,7 +112,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -122,7 +122,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
