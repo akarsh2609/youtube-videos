@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from youtube_videos.views import get_page
+from youtube_videos.views import get_page, search_video
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('get/<int:page_number>', get_page)
+    path('get/<int:page_number>', get_page),
+    path('search/', search_video)
 ]
